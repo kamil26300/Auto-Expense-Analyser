@@ -1,17 +1,13 @@
-import React from "react";
-import CarFilterForm from "./components/AdvanceFilters";
-import Header from "./components/Header";
-import MandatoryFilters from "./components/MandatoryFilters";
+import { Route, Routes } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
-    <div>
-      <Header />
-      <MandatoryFilters />
-      {/* <div className="min-h-screen flex items-center justify-center bg-gray-900">
-        <CarFilterForm />
-      </div> */}
-    </div>
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
   );
 }
 

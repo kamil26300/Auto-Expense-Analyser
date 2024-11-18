@@ -19,7 +19,7 @@ const SingleSelect = ({
         value={selectedOption}
         onChange={onChange}
         options={options}
-        placeholder={"Select"}
+        placeholder={"- Select -"}
         required={required || false}
         isSearchable
       />

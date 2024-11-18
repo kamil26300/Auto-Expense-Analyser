@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import carBG from "../assets/car-bg.svg";
-import SingleSelect from "./SingleSelect";
+import SingleSelect from "./inputs/SingleSelect";
 import Switch from "react-switch";
 
-const MandatoryFilters = () => {
-  const [checked, setChecked] = useState(false);
+const MandatoryFilters = ({ checkedAdvFilters, setCheckedAdvFilters }) => {
   const [fields, setFields] = useState({
     budget: null,
-    transmission: null,
+    transmissionType: null,
     fuelType: null,
   });
 
@@ -16,10 +15,9 @@ const MandatoryFilters = () => {
       { value: "12-15", label: "₹ 12 Lakh - ₹ 15 Lakh" },
       { value: "15-18", label: "₹ 15 Lakh - ₹ 18 Lakh" },
       { value: "18-21", label: "₹ 18 Lakh - ₹ 21 Lakh" },
-      // Add more budget options as needed
     ],
 
-    transmission: [
+    transmissionType: [
       { value: "manual", label: "Manual" },
       { value: "automatic", label: "Automatic" },
     ],
@@ -27,7 +25,8 @@ const MandatoryFilters = () => {
     fuelType: [
       { value: "petrol", label: "Petrol" },
       { value: "diesel", label: "Diesel" },
-      // Add more fuel type options as needed
+      { value: "hybrid", label: "Hybrid" },
+      { value: "cng", label: "CNG" },
     ],
   };
 
@@ -36,7 +35,7 @@ const MandatoryFilters = () => {
   };
 
   const handleSwitchChange = (nextChecked) => {
-    setChecked(nextChecked);
+    setCheckedAdvFilters(nextChecked);
   };
 
   return (
@@ -54,10 +53,10 @@ const MandatoryFilters = () => {
               required
             />
             <SingleSelect
-              options={options.transmission}
-              selectedOption={fields.transmission}
-              onChange={(e) => handleChange(e, "transmission")}
-              label="Transmission"
+              options={options.transmissionType}
+              selectedOption={fields.transmissionType}
+              onChange={(e) => handleChange(e, "transmissionType")}
+              label="Transmission Type"
               className="col-span-2"
               required
             />
@@ -70,23 +69,28 @@ const MandatoryFilters = () => {
               required
             />
           </div>
-          <div className="flex gap-3 text-nowrap p-6">
-            <label className="text-off-white">Advanced Filters</label>
-            <Switch
-              checked={checked}
-              onChange={handleSwitchChange}
-              onColor="#3498DB"
-              offColor="#ccc"
-              onHandleColor="#F8F9FA"
-              handleDiameter={22}
-              uncheckedIcon={false}
-              checkedIcon={false}
-              height={28}
-              width={48}
-            />
+          <div className="flex justify-between text-off-white items-center">
+            <div className="flex gap-3 text-nowrap px-6">
+              <label>Advance Filters</label>
+              <Switch
+                checked={checkedAdvFilters}
+                onChange={handleSwitchChange}
+                onColor="#3498DB"
+                offColor="#999"
+                onHandleColor="#F8F9FA"
+                handleDiameter={22}
+                uncheckedIcon={false}
+                checkedIcon={false}
+                height={28}
+                width={48}
+              />
+            </div>
+            <button className="bg-light-blue py-2 px-4 rounded-small h-min">
+              Search
+            </button>
           </div>
         </div>
-        <img className="w-full" src={carBG} alt="car-bg" />
+        <img className="w-full" src={carBG} alt="bg-img" />
       </div>
     </div>
   );

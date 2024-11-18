@@ -14,6 +14,9 @@ export default {
       },
       height: {
         header: "4.5rem"
+      },
+      margin: {
+        container: "45px"
       }
     },
   },
