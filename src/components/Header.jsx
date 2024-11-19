@@ -1,13 +1,14 @@
 import React from "react";
 import logo from "../assets/logo.png";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <header className="bg-dark-blue text-off-white py-4 px-8 flex items-center justify-between shadow-md fixed w-full z-10">
+    <header className="bg-dark-blue text-off-white px-8 flex items-center justify-between shadow-md fixed w-full z-10 p-4">
       {/* Logo Section */}
-      <div className="w-12">
+      <Link to="/" className="w-24 rounded-full">
         <img src={logo} alt="logo.png" />
-      </div>
+      </Link>
 
       {/* Buttons */}
       <div className="space-x-4">

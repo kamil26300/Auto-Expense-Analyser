@@ -1,3 +1,47 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.table-modern {
+  border-collapse: collapse;
+  font-family: "Inter", sans-serif; /* Modern Font */
+}
+
+.table-modern th {
+  background-color: #2c3e50; /* Dark header background */
+  text-align: left;
+  padding: 10px;
+  font-size: larger;
+  border-bottom: 2px solid #34495e; /* Subtle border */
+}
+
+.table-modern td {
+  padding: 12px;
+  border-bottom: 1px solid #34495e; /* Subtle row border */
+}
+
+.table-modern tr:nth-child(even) {
+  background-color: #34495e; /* Alternating row colors */
+}
+
+.table-modern tr:hover {
+  background-color: #3498DB; /* Highlight row on hover */
+  cursor: pointer;
+}
+
+.hidden-h th {
+  color: #2c3e50;
+  user-select: none;
+}
+
+.table-modern th:first-child,
+.table-modern td:first-child {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.table-modern th:last-child,
+.table-modern td:last-child {
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}

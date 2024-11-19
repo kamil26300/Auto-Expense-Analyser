@@ -1,36 +1,43 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import carBG from "../assets/car-bg.svg";
 import SingleSelect from "./inputs/SingleSelect";
 import Switch from "react-switch";
+import MultiSelect from "./inputs/MultiSelect";
+import { budgetOptions } from "../services/inputOptions";
+import SingleSlider from "./inputs/SingleSlider";
 
-const MandatoryFilters = ({ checkedAdvFilters, setCheckedAdvFilters }) => {
-  const [fields, setFields] = useState({
-    budget: null,
-    transmissionType: null,
-    fuelType: null,
-  });
+const MandatoryFilters = ({
+  checkedAdvFilters,
+  setCheckedAdvFilters,
+  fields,
+  setFields,
+  handleSearch,
+  options,
+  setCurrentField
+}) => {
+  const [isFormValid, setIsFormValid] = useState(false);
 
-  const options = {
-    budget: [
-      { value: "12-15", label: "₹ 12 Lakh - ₹ 15 Lakh" },
-      { value: "15-18", label: "₹ 15 Lakh - ₹ 18 Lakh" },
-      { value: "18-21", label: "₹ 18 Lakh - ₹ 21 Lakh" },
-    ],
+  useEffect(() => {
+    validateForm();
+  }, [fields]);
 
-    transmissionType: [
-      { value: "manual", label: "Manual" },
-      { value: "automatic", label: "Automatic" },
-    ],
-
-    fuelType: [
-      { value: "petrol", label: "Petrol" },
-      { value: "diesel", label: "Diesel" },
-      { value: "hybrid", label: "Hybrid" },
-      { value: "cng", label: "CNG" },
-    ],
+  const validateForm = () => {
+    // Check if all required fields have values
+    const isValid = Object.values(fields).every((value) => {
+      // If the value is an array, ensure its length > 0
+      if (Array.isArray(value)) {
+        return value.length > 0;
+      }
+      // For other types, ensure the value is not null
+      return value !== null;
+    });
+  
+    setIsFormValid(isValid); // Update the form validity state
   };
+  
 
   const handleChange = (e, field) => {
+    setCurrentField(field)
     setFields((prev) => ({ ...prev, [field]: e }));
   };
 
@@ -40,19 +47,18 @@ const MandatoryFilters = ({ checkedAdvFilters, setCheckedAdvFilters }) => {
 
   return (
     <div>
-      <div className="h-header"></div>
       <div className="relative flex items-center">
         <div className="absolute ml-28 gap-4 flex flex-col w-1/3">
-          <div className="p-6 bg-white/10 grid grid-cols-4 gap-12 w-full rounded-small">
+          <div className="p-6 bg-white/10 grid grid-cols-4 gap-8 w-full rounded-small">
             <SingleSelect
-              options={options.budget}
+              options={budgetOptions}
               selectedOption={fields.budget}
               onChange={(e) => handleChange(e, "budget")}
               label="Budget"
               className="col-span-3"
               required
             />
-            <SingleSelect
+            <MultiSelect
               options={options.transmissionType}
               selectedOption={fields.transmissionType}
               onChange={(e) => handleChange(e, "transmissionType")}
@@ -60,13 +66,22 @@ const MandatoryFilters = ({ checkedAdvFilters, setCheckedAdvFilters }) => {
               className="col-span-2"
               required
             />
-            <SingleSelect
+            <MultiSelect
               options={options.fuelType}
               selectedOption={fields.fuelType}
               onChange={(e) => handleChange(e, "fuelType")}
               label="Fuel Type"
               className="col-span-2"
               required
+              />
+            <SingleSlider
+              label="Average drive a day (KM)"
+              className="col-span-4"
+              value={fields.driveDistance}
+              onChange={(e) => handleChange(e, "driveDistance")}
+              defaultValue="50"
+              start="0"
+              end="100"
             />
           </div>
           <div className="flex justify-between text-off-white items-center">
@@ -85,7 +100,13 @@ const MandatoryFilters = ({ checkedAdvFilters, setCheckedAdvFilters }) => {
                 width={48}
               />
             </div>
-            <button className="bg-light-blue py-2 px-4 rounded-small h-min">
+            <button
+              className={`py-2 px-4 rounded-small h-min ${
+                isFormValid ? "bg-light-blue" : "bg-gray-400 cursor-not-allowed"
+              }`}
+              disabled={!isFormValid}
+              onClick={handleSearch}
+            >
               Search
             </button>
           </div>

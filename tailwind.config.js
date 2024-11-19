@@ -17,6 +17,9 @@ export default {
       },
       margin: {
         container: "45px"
+      },
+      padding: {
+        container: "45px"
       }
     },
   },
