@@ -202,7 +202,7 @@ def get_car_details(cars, drive_distance):
             "output": {
                 "depreciation": depreciation_prediction,
                 "fuel_cost": round(fuel_cost, 2) if fuel_cost is not None else None,
-                "maintenance_cost": int(maintenance_cost),
+                "maintenance_cost": int(str(maintenance_cost).replace(",", ""))
             },
             "carData": {
                 "Manufacturer": manufacturer,
@@ -259,7 +259,7 @@ def get_filtered_cars(query_params):
             max_budget = float(budget_range[1])
 
             filtered_df = filtered_df[
-                (filtered_df["actual cost"] >= min_budget * 100000)
+                (filtered_df["actual cost"] > min_budget * 100000)
                 & (filtered_df["actual cost"] <= max_budget * 100000)
             ]
 
