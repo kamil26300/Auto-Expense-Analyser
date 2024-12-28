@@ -4,16 +4,6 @@ import Table from "rc-table";
 import { IoPlayBack } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 
-// cost
-// fuel
-// mileage
-// engine
-// power
-// trans
-// maintenance
-// fuel_cost
-// depreciation
-
 const ComparePage = () => {
   const navigate = useNavigate();
   const [carDetails, setCarDetails] = useState([]);
