@@ -24,7 +24,7 @@ export const useCarData = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://127.0.0.1:5000/fetch-car-filters");
+        const response = await fetch("https://auto-expense-analyser-be.onrender.com/fetch-car-filters");
         const result = await response.json();
 
         if (response.ok) {

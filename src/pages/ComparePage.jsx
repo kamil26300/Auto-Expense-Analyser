@@ -16,7 +16,7 @@ const ComparePage = () => {
       try {
         const queryString = location.search.substring(1); // Extract query string from URL
 
-        const url = `http://127.0.0.1:5000/car-details?${queryString}`;
+        const url = `https://auto-expense-analyser-be.onrender.com/car-details?${queryString}`;
 
         // Fetch data from the API
         const response = await fetch(url);

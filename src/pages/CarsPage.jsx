@@ -38,7 +38,7 @@ const CarsPage = () => {
   const fetchCars = async (queryString) => {
     setLoading(true);
     try {
-      const response = await fetch(`http://127.0.0.1:5000/cars?${queryString}`);
+      const response = await fetch(`https://auto-expense-analyser-be.onrender.com/cars?${queryString}`);
       const data = await response.json();
       setCars(data); // Process the data (list of cars)
     } catch (error) {
