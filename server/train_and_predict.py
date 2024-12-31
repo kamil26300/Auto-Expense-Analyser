@@ -14,7 +14,7 @@ import numpy as np
 
 
 def clean_and_train():
-    df = pd.read_csv("server/cleaned_final_car_data.csv")
+    df = pd.read_csv("cleaned_final_car_data.csv")
     backup = df.copy()
 
     df.info()
@@ -127,8 +127,8 @@ def clean_and_train():
 
 
 # Load the CSV and model once
-df = pd.read_csv("server/cleaned_final_car_data.csv")
-pipe = pickle.load(open("server/RandomForestModel.pkl", "rb"))
+df = pd.read_csv("cleaned_final_car_data.csv")
+pipe = pickle.load(open("RandomForestModel.pkl", "rb"))
 DIESEL = 129.243  # ₹/litre
 PETROL = 131.65
 CNG = 117
