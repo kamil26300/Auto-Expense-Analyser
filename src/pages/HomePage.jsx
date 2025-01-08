@@ -142,7 +142,15 @@ function HomePage() {
 
   // Render loading or filtered car data
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div>
+        <p>Loading...</p>
+        <p>
+          It may take upto <span className="font-extrabold">50 seconds</span>{" "}
+          for render server to get started for first time in a while.
+        </p>
+      </div>
+    );
   }
 
   const handleSearch = () => {
