@@ -5,7 +5,7 @@ import Layout from "../components/Layout";
 import { GiCarSeat } from "react-icons/gi";
 
 const CarsPage = () => {
-  const location = useLocation(); // or use 'useLocation' from 'react-router-dom' if you're using React Router
+  const location = useLocation();
   const navigate = useNavigate();
   const [selectedCars, setSelectedCars] = useState([]);
   const [cars, setCars] = useState([]);

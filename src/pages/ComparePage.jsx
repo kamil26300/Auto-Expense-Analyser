@@ -2,19 +2,19 @@ import React, { useEffect, useState } from "react";
 import Layout from "../components/Layout";
 import Table from "rc-table";
 import { IoPlayBack } from "react-icons/io5";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const ComparePage = () => {
   const navigate = useNavigate();
   const [carDetails, setCarDetails] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const location = useLocation();
 
-  // Fetch car details from API when component mounts
   useEffect(() => {
     const fetchCarDetails = async () => {
       try {
-        const queryString = location.search.substring(1); // Extract query string from URL
+        const queryString = location.search.substring(1);
 
         const url = `https://auto-expense-analyser-be.onrender.com/car-details?${queryString}`;
 
