@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom'; // Optional: Use if using React Router for navigation
+import { Link } from 'react-router-dom';
 
 const NotFound = () => {
   return (
@@ -10,7 +10,7 @@ const NotFound = () => {
         The page you're looking for doesn't exist or has been moved.
       </p>
       <Link
-        to="/" // Change this to your home route if using React Router
+        to="/"
         className="mt-6 px-6 py-3 bg-blue-500 text-white rounded-md shadow-md hover:bg-blue-600 transition"
       >
         Go Back Home
