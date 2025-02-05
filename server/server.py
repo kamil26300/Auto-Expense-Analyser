@@ -60,7 +60,10 @@ def get_cars():
 
     return jsonify(cars)
 
+@app.route("/")
+def home():
+    return "Hello from Flask on Vercel!"
 
-# Run the server
 if __name__ == "__main__":
-    app.run(port=5000)
+    from gunicorn.app.wsgiapp import run
+    run()
