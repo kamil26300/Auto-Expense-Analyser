@@ -38,7 +38,9 @@ const CarsPage = () => {
   const fetchCars = async (queryString) => {
     setLoading(true);
     try {
-      const response = await fetch(`https://auto-expense-analyser-be.onrender.com/cars?${queryString}`);
+      const response = await fetch(
+        `https://normal-euphemia-hello263-ba7ccd33.koyeb.app/cars?${queryString}`
+      );
       const data = await response.json();
       setCars(data); // Process the data (list of cars)
     } catch (error) {
@@ -61,9 +63,7 @@ const CarsPage = () => {
   return (
     <Layout>
       <div className="grid grid-cols-1 gap-8 rounded-small bg-dark-blue m-container text-off-white p-6">
-        <BreadCrumbs
-          back={"/"}
-        />
+        <BreadCrumbs back={"/"} />
         {loading && <p>Loading...</p>}
         {cars.length > 0 &&
           cars.map((car) => (

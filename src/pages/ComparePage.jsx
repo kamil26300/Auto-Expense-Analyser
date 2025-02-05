@@ -16,7 +16,7 @@ const ComparePage = () => {
       try {
         const queryString = location.search.substring(1);
 
-        const url = `https://auto-expense-analyser-be.onrender.com/car-details?${queryString}`;
+        const url = `https://normal-euphemia-hello263-ba7ccd33.koyeb.app/car-details?${queryString}`;
 
         // Fetch data from the API
         const response = await fetch(url);
@@ -176,7 +176,9 @@ const ComparePage = () => {
         />
       </div>
       <div className="bg-dark-blue m-container rounded-small p-6 pt-0 text-off-white shadow-lg ">
-        <div className="items-start w-full justify-start flex text-xl font-bold translate-y-8">Ownership Cost (5 years)</div>
+        <div className="items-start w-full justify-start flex text-xl font-bold translate-y-8">
+          Ownership Cost (5 years)
+        </div>
         <Table
           columns={columns}
           className="table-modern hidden-h"
