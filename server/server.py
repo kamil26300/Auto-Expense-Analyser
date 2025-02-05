@@ -11,11 +11,13 @@ CORS(app)
 @app.route("/car-details", methods=["GET"])
 def get_car_details_route():
     # Get query parameters (car IDs, drive distance, and kilometers driven)
-    car_ids = request.args.get("id", "").split(",")  # Default to an empty string if 'id' is not provided
-    
+    car_ids = request.args.get("id", "").split(
+        ","
+    )  # Default to an empty string if 'id' is not provided
+
     # Convert the list of string IDs to integers
     car_ids = [int(car_id) for car_id in car_ids]
-    
+
     drive_distance = float(
         request.args.get("driveDistance", 50)
     )  # Default to 50 if not provided
@@ -60,10 +62,11 @@ def get_cars():
 
     return jsonify(cars)
 
+
 @app.route("/")
 def home():
     return "Hello from Flask on Vercel!"
 
+
 if __name__ == "__main__":
-    from gunicorn.app.wsgiapp import run
-    run()
+    app.run(host="0.0.0.0", port=8000)
