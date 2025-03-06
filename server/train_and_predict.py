@@ -265,6 +265,8 @@ def get_filtered_cars(query_params):
 
     # Iterate through the query parameters and filter the dataframe
     for key, value in query_params.items():
+        if not value:
+            continue
         if key == "budget":
             continue  # Skip budget as it's already handled above
 
